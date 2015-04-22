@@ -1,0 +1,59 @@
+Set up for GPIO I/O
+
+
+
+0. Can use filesystem /sys/class/gpio:
+
+	echo 17 > /sys/class/gpio/export
+
+	echo out > /sys/class/gpio17/direction
+
+	echo 1 > /sys/class/gpio17/value
+
+
+
+1. Install wiringPi  (for C)
+
+	wiringPi.com/download-and-install/
+
+
+2. Test DS18B20 temperature probe:
+
+	modprobe w1-gpio
+
+	modprobe w1-therm
+
+	cd /sys/bus/w1/devices
+
+	ls
+
+	cd 28-xxxx (DS18B20 serial number)
+
+	cat w1-slave
+
+
+3. Load modules at boot:
+
+	Add w1-gpio and w1-therm to /etc/modules
+
+
+
+
+Python setup:
+
+	sudo apt-get install python-rpi.gpio
+
+
+
+
+lighttpd setup
+:
+	Should work out of the box, as long as you put cgi scripts
+
+	in /var/www/cgi-bin folder and mark them as executable.
+
+	www.penguintutor.com/linux/light-webserver
+
+
+	
+
